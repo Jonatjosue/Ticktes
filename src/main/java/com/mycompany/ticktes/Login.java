@@ -1,9 +1,22 @@
 package com.mycompany.ticktes;
-
 import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
+    
+     private static String Padminget="";
+     private  boolean Validating = false;
+  
+     
+    public String getPadminget() {
+        return Padminget;
+    }
 
+    
+    public void setPadminget(String Padminget) {
+        Login.Padminget = Padminget;
+    }
+    
+    
     public Login() {
         initComponents();
         setLocationRelativeTo(null);
@@ -24,6 +37,7 @@ public class Login extends javax.swing.JFrame {
         jToggleButton1 = new javax.swing.JToggleButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        Validatingpass = new javax.swing.JLabel();
 
         jLabel4.setText("jLabel4");
 
@@ -47,7 +61,18 @@ public class Login extends javax.swing.JFrame {
                 GetUserActionPerformed(evt);
             }
         });
+        GetUser.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                GetUserKeyReleased(evt);
+            }
+        });
         jPanel1.add(GetUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 260, -1));
+
+        GetPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                GetPasswordKeyReleased(evt);
+            }
+        });
         jPanel1.add(GetPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 260, -1));
 
         LoginButton.setText("Login");
@@ -69,6 +94,10 @@ public class Login extends javax.swing.JFrame {
         jLabel6.setText("   Ticktes");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 120, 80));
 
+        Validatingpass.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        Validatingpass.setText("Enter Password");
+        jPanel1.add(Validatingpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, 260, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 390));
 
         pack();
@@ -80,23 +109,82 @@ public class Login extends javax.swing.JFrame {
 
     private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
         // the first one I need to set up
-        String user = GetUser.getText();
-        String password = GetPassword.getText();
         
-        if("admin".equals(user)&& "admin".equals(password)){
-            AdminProfile admin= new AdminProfile();
-            admin.setVisible(true);
-            this.dispose();
+        
+        
+        if(Validating==true){
+             String user = GetUser.getText();
+        String password = GetPassword.getText();
+        boolean emailORuser =false;
+        
+          if(user.contains("@")){
+                emailORuser=true;
+            }
+        
+         boolean UserFound = false;
+         
+         if(Padminget==""){
+             Padminget="admin";
+             ChangePassword p = new ChangePassword();
+             p.setCurrentpassword(Padminget);
+         }else{
+             ChangePassword p = new ChangePassword();
+             p.setCurrentpassword(Padminget);
+         }
+         
+        if(user.equals("admin")&& Padminget.equals(password)){
+            AdminProfile A= new AdminProfile();
+            A.setVisible(true);
+            UserFound= true;
         }else{
-            boolean UserFound = false;
-                     for(ClassForUsers u: MainApp.Users){
+              //----------------------------------------------------------
+              if(emailORuser==true){
+             //----------------------------------------------------------
+                  if (UserFound==false){
+                      for(ClassForUsers u: MainApp.Users){
+                            if(u.getPassword().equals(password)&& u.getEmail().equals(user)){
+                                        WelcomeClass welcome = new WelcomeClass(u);
+                                        welcome.setVisible(true);
+                                        UserFound=true;
+                                        break;
+                                     }
+                             } 
+                   }
+                     
+                    if(UserFound==false){
+                             for(TeamMembersClass t: MainApp.Tusers){
+                                        if(t.getTpassword().equals(password)&& t.getTemail().equals(user)){
+                                                ProfileTeamMember h= new ProfileTeamMember();
+                                                h.setVisible(true);
+                                                UserFound=true;
+                                                 break;
+                                                 }
+                                         }
+                             }
+                     if(UserFound==false){
+                             for(TeamLeaderClass t: MainApp.Lusers){
+                                        if(t.getLpassword().equals(password)&& t.getLemail().equals(user)){
+                                                ProfileTeamLeader h= new ProfileTeamLeader();
+                                                h.setVisible(true);
+                                                UserFound=true;
+                                                 break;
+                                                 }
+                                         }
+                             }  
+                  
+                    //----------------------------------------------------------
+              }else{
+                  if (UserFound==false){
+                      for(ClassForUsers u: MainApp.Users){
                             if(u.getPassword().equals(password)&& u.getUser().equals(user)){
                                         WelcomeClass welcome = new WelcomeClass(u);
                                         welcome.setVisible(true);
                                         UserFound=true;
                                         break;
-                    }
-                 }
+                                     }
+                             } 
+                   }
+                     
                     if(UserFound==false){
                              for(TeamMembersClass t: MainApp.Tusers){
                                         if(t.getTpassword().equals(password)&& t.getTuser().equals(user)){
@@ -107,13 +195,84 @@ public class Login extends javax.swing.JFrame {
                                                  }
                                          }
                              }
-          if(UserFound ==true){
+                     if(UserFound==false){
+                             for(TeamLeaderClass t: MainApp.Lusers){
+                                        if(t.getLpassword().equals(password)&& t.getLuser().equals(user)){
+                                                ProfileTeamLeader h= new ProfileTeamLeader();
+                                                h.setVisible(true);
+                                                UserFound=true;
+                                                 break;
+                                                 }
+                                         }
+                             }
+                       //----------------------------------------------------------
+              }
+            
+                   
+         
+        }  
+         if(UserFound ==true){
                 this.dispose();
+                
+                
            }else{
              JOptionPane.showMessageDialog(this, "User not Found try again");
             }
-        }  
+        }else{
+             JOptionPane.showMessageDialog(this, "Password needs more characteres");
+        }
+        
+       
     }//GEN-LAST:event_LoginButtonActionPerformed
+
+    private void GetPasswordKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_GetPasswordKeyReleased
+        // testing password
+        String support = GetPassword.getText();
+        int wide = support.length();
+        
+        if(support.equals("admin")){
+            Validatingpass.setText("Enter password");
+            Validating=true;
+        }else{
+             switch(wide){
+             case 0:
+                 Validatingpass.setText("Enter Password");
+                     break;
+             case 1:
+                 Validatingpass.setText(" 7 characteres Left");
+                 break;
+             case 2:
+                 Validatingpass.setText(" 6 characteres Left");
+                 break;
+             case 3:
+                 Validatingpass.setText(" 5 characteres Left");
+                 break;
+             case 4:
+                 Validatingpass.setText(" 4 characteres Left");
+                 break;
+              case 5:
+                  Validatingpass.setText(" 3 characteres Left");
+                 break;
+               case 6:
+                   Validatingpass.setText(" 2 characteres Left");
+                 break;
+                case 7:
+                    Validatingpass.setText(" 1 character Left");
+                    Validating= false;
+                 break;
+               case 8:
+                   Validatingpass.setText("Hint Login to check password");
+                   Validating= true;
+                 break;
+        }    
+        }
+            
+            
+    }//GEN-LAST:event_GetPasswordKeyReleased
+
+    private void GetUserKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_GetUserKeyReleased
+        // testing admin
+    }//GEN-LAST:event_GetUserKeyReleased
 
     
 
@@ -121,6 +280,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JTextField GetPassword;
     private javax.swing.JTextField GetUser;
     private javax.swing.JButton LoginButton;
+    private javax.swing.JLabel Validatingpass;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -130,4 +290,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
+
+    
 }
