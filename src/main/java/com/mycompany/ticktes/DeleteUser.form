@@ -49,6 +49,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Team Leaders"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jMenu5MouseClicked"/>
+              </Events>
             </Menu>
           </SubComponents>
         </Menu>
@@ -154,7 +157,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="600" y="100" width="110" height="-1"/>
+              <AbsoluteConstraints x="600" y="100" width="150" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
