@@ -1,5 +1,8 @@
 package com.mycompany.ticktes;
 public class AdminProfile extends javax.swing.JFrame {
+    
+    
+    
     public AdminProfile() {
         initComponents();
         setLocationRelativeTo(null);
@@ -43,18 +46,18 @@ public class AdminProfile extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         CreateUserButton = new javax.swing.JToggleButton();
         DeleteUserButton = new javax.swing.JToggleButton();
-        CheckTeamMemberButton = new javax.swing.JToggleButton();
-        CheckTeamLeaderButton = new javax.swing.JToggleButton();
         CreateTeamButton = new javax.swing.JToggleButton();
         AssingMemberButton = new javax.swing.JToggleButton();
         CheckStatusTicktesButton = new javax.swing.JToggleButton();
         BulkNUsersButton = new javax.swing.JToggleButton();
         BulkTMembersButton = new javax.swing.JToggleButton();
         BulkTicktesButton = new javax.swing.JToggleButton();
+        CheckNormalUser = new javax.swing.JButton();
 
         jLabel9.setText("jLabel9");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(54, 54, 54));
@@ -92,6 +95,11 @@ public class AdminProfile extends javax.swing.JFrame {
         ChangePasswordbutton.setBackground(new java.awt.Color(54, 54, 54));
         ChangePasswordbutton.setForeground(new java.awt.Color(255, 255, 255));
         ChangePasswordbutton.setText("Change Password");
+        ChangePasswordbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChangePasswordbuttonActionPerformed(evt);
+            }
+        });
         jPanel4.add(ChangePasswordbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 240, -1));
 
         LogOutbutton.setBackground(new java.awt.Color(54, 54, 54));
@@ -120,11 +128,11 @@ public class AdminProfile extends javax.swing.JFrame {
         jLabel6.setText("Create and Delete Users");
         jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 286, 30));
 
-        jPanel2.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 340, 10));
+        jPanel2.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 370, 10));
 
         jPanel6.setBackground(new java.awt.Color(204, 164, 59));
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel2.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 340, 10));
+        jPanel2.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 370, 10));
 
         jPanel7.setBackground(new java.awt.Color(204, 164, 59));
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -138,7 +146,7 @@ public class AdminProfile extends javax.swing.JFrame {
 
         jPanel7.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 160, 30));
 
-        jPanel2.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 340, 10));
+        jPanel2.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 370, 10));
 
         jPanel8.setBackground(new java.awt.Color(204, 164, 59));
         jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -170,18 +178,18 @@ public class AdminProfile extends javax.swing.JFrame {
 
         jPanel8.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 160, 30));
 
-        jPanel2.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 340, 10));
+        jPanel2.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 370, 10));
 
         jPanel13.setBackground(new java.awt.Color(204, 164, 59));
         jPanel13.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel2.add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 330, 10));
+        jPanel2.add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 370, 10));
 
         jPanel14.setBackground(new java.awt.Color(204, 164, 59));
         jPanel14.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel2.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 340, 10));
+        jPanel2.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 370, 10));
 
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel17.setText("Check Information Team leader  and Team Member");
+        jLabel17.setText("Check Information of User");
         jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 340, 20));
 
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
@@ -189,7 +197,7 @@ public class AdminProfile extends javax.swing.JFrame {
         jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 330, 30));
 
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("Create a Team");
+        jLabel10.setText("Create a Team And Check Teams");
         jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 340, 20));
 
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -212,7 +220,7 @@ public class AdminProfile extends javax.swing.JFrame {
                 CreateUserButtonActionPerformed(evt);
             }
         });
-        jPanel2.add(CreateUserButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 150, -1));
+        jPanel2.add(CreateUserButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 180, -1));
 
         DeleteUserButton.setBackground(new java.awt.Color(229, 229, 229));
         DeleteUserButton.setForeground(new java.awt.Color(51, 51, 51));
@@ -222,32 +230,32 @@ public class AdminProfile extends javax.swing.JFrame {
                 DeleteUserButtonActionPerformed(evt);
             }
         });
-        jPanel2.add(DeleteUserButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 180, -1));
-
-        CheckTeamMemberButton.setBackground(new java.awt.Color(229, 229, 229));
-        CheckTeamMemberButton.setForeground(new java.awt.Color(51, 51, 51));
-        CheckTeamMemberButton.setText("Check Team Member");
-        jPanel2.add(CheckTeamMemberButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 150, -1));
-
-        CheckTeamLeaderButton.setBackground(new java.awt.Color(229, 229, 229));
-        CheckTeamLeaderButton.setForeground(new java.awt.Color(51, 51, 51));
-        CheckTeamLeaderButton.setText("Check Team Leader");
-        jPanel2.add(CheckTeamLeaderButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 180, -1));
+        jPanel2.add(DeleteUserButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, 180, -1));
 
         CreateTeamButton.setBackground(new java.awt.Color(229, 229, 229));
         CreateTeamButton.setForeground(new java.awt.Color(51, 51, 51));
-        CreateTeamButton.setText("Create Team");
-        jPanel2.add(CreateTeamButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 340, -1));
+        CreateTeamButton.setText("Teams");
+        CreateTeamButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CreateTeamButtonActionPerformed(evt);
+            }
+        });
+        jPanel2.add(CreateTeamButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 370, -1));
 
         AssingMemberButton.setBackground(new java.awt.Color(229, 229, 229));
         AssingMemberButton.setForeground(new java.awt.Color(51, 51, 51));
         AssingMemberButton.setText("Assing Member ");
-        jPanel2.add(AssingMemberButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 340, -1));
+        AssingMemberButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AssingMemberButtonActionPerformed(evt);
+            }
+        });
+        jPanel2.add(AssingMemberButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 370, -1));
 
         CheckStatusTicktesButton.setBackground(new java.awt.Color(229, 229, 229));
         CheckStatusTicktesButton.setForeground(new java.awt.Color(51, 51, 51));
         CheckStatusTicktesButton.setText("Check Status Tickets");
-        jPanel2.add(CheckStatusTicktesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, 340, -1));
+        jPanel2.add(CheckStatusTicktesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, 370, -1));
 
         BulkNUsersButton.setBackground(new java.awt.Color(229, 229, 229));
         BulkNUsersButton.setForeground(new java.awt.Color(51, 51, 51));
@@ -262,14 +270,24 @@ public class AdminProfile extends javax.swing.JFrame {
                 BulkTMembersButtonActionPerformed(evt);
             }
         });
-        jPanel2.add(BulkTMembersButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 460, 110, -1));
+        jPanel2.add(BulkTMembersButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 460, 110, -1));
 
         BulkTicktesButton.setBackground(new java.awt.Color(229, 229, 229));
         BulkTicktesButton.setForeground(new java.awt.Color(51, 51, 51));
         BulkTicktesButton.setText("Ticktes");
-        jPanel2.add(BulkTicktesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 460, 100, -1));
+        jPanel2.add(BulkTicktesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 460, 100, -1));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 0, 370, 500));
+        CheckNormalUser.setBackground(new java.awt.Color(229, 229, 229));
+        CheckNormalUser.setForeground(new java.awt.Color(0, 0, 0));
+        CheckNormalUser.setText("Check Users");
+        CheckNormalUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CheckNormalUserActionPerformed(evt);
+            }
+        });
+        jPanel2.add(CheckNormalUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 370, -1));
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 0, 400, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -289,7 +307,12 @@ public class AdminProfile extends javax.swing.JFrame {
         // Log Out
         Login L = new Login();
         L.setVisible(true);
-        this.dispose();
+         this.dispose();
+        
+       
+        
+        
+     
     }//GEN-LAST:event_LogOutbuttonActionPerformed
 
     private void DeleteUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteUserButtonActionPerformed
@@ -297,6 +320,34 @@ public class AdminProfile extends javax.swing.JFrame {
         DeleteUser D = new DeleteUser();
         D.setVisible(true);
     }//GEN-LAST:event_DeleteUserButtonActionPerformed
+
+    private void ChangePasswordbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangePasswordbuttonActionPerformed
+        
+        ChangePassword C = new ChangePassword();
+        C.setVisible(true);
+        
+       
+        
+    }//GEN-LAST:event_ChangePasswordbuttonActionPerformed
+
+    private void CheckNormalUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckNormalUserActionPerformed
+        // check normal user
+        CheckNormalUser U = new CheckNormalUser();
+        U.setVisible(true);
+    }//GEN-LAST:event_CheckNormalUserActionPerformed
+
+    private void CreateTeamButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateTeamButtonActionPerformed
+        // Create teams and check
+        Teams T = new Teams();
+        T.setVisible(true);
+        
+    }//GEN-LAST:event_CreateTeamButtonActionPerformed
+
+    private void AssingMemberButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AssingMemberButtonActionPerformed
+        // Asign Members
+        AssignMembers w= new AssignMembers();
+        w.setVisible(true);
+    }//GEN-LAST:event_AssingMemberButtonActionPerformed
 
     
 
@@ -306,9 +357,8 @@ public class AdminProfile extends javax.swing.JFrame {
     private javax.swing.JToggleButton BulkTMembersButton;
     private javax.swing.JToggleButton BulkTicktesButton;
     private javax.swing.JToggleButton ChangePasswordbutton;
+    private javax.swing.JButton CheckNormalUser;
     private javax.swing.JToggleButton CheckStatusTicktesButton;
-    private javax.swing.JToggleButton CheckTeamLeaderButton;
-    private javax.swing.JToggleButton CheckTeamMemberButton;
     private javax.swing.JToggleButton CreateTeamButton;
     private javax.swing.JToggleButton CreateUserButton;
     private javax.swing.JToggleButton DeleteUserButton;
@@ -345,4 +395,6 @@ public class AdminProfile extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     // End of variables declaration//GEN-END:variables
+
+   
 }
